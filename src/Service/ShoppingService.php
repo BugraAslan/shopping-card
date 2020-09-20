@@ -22,15 +22,15 @@ class ShoppingService
     }
 
     /**
-     * @param ShoppingCard $shoppingCart
+     * @param ShoppingCard $shoppingCard
      * @param Coupon $coupon
      */
-    public function applyCoupon(ShoppingCard $shoppingCart, Coupon $coupon): void
+    public function applyCoupon(ShoppingCard $shoppingCard, Coupon $coupon): void
     {
-        if ($shoppingCart->getSubTotalPrice() >= $coupon->getMinimumAmount() &&
-            ($shoppingCart->getSubTotalPrice() - $coupon->getDiscountAmount()) > 0
+        if ($shoppingCard->getSubTotalPrice() >= $coupon->getMinimumAmount() &&
+            ($shoppingCard->getSubTotalPrice() - $coupon->getDiscountAmount()) > 0
         ){
-            $shoppingCart->setTotalPrice($shoppingCart->getSubTotalPrice() - $coupon->getDiscountAmount());
+            $shoppingCard->setTotalPrice($shoppingCard->getSubTotalPrice() - $coupon->getDiscountAmount());
         }
     }
 }

@@ -44,7 +44,7 @@ class ShoppingCardCommand extends Command
             ->setPrice(99.99)
             ->setCategory($bagCategory);
 
-        $shoppingCart = (new ShoppingCard())
+        $shoppingCard = (new ShoppingCard())
             ->addItem(new ShoppingItem($shirtProduct, 1))
             ->addItem(new ShoppingItem($shirtProduct2, 3))
             ->addItem(new ShoppingItem($bagProduct, 2));
@@ -58,14 +58,14 @@ class ShoppingCardCommand extends Command
             ->setDiscountAmount(5);
 
         $shoppingService = new ShoppingService();
-        $shoppingService->applyCampaign($shoppingCart, $bagCampaign);
-        $shoppingService->applyCampaign($shoppingCart, $shirtCampaign);
+        $shoppingService->applyCampaign($shoppingCard, $bagCampaign);
+        $shoppingService->applyCampaign($shoppingCard, $shirtCampaign);
 
         $coupon = (new Coupon())
             ->setMinimumAmount(75)
             ->setDiscountAmount(10);
 
-        $shoppingService->applyCoupon($shoppingCart, $coupon);
+        $shoppingService->applyCoupon($shoppingCard, $coupon);
 
         $delivery = (new Delivery())
             ->setCostPerDelivery(1)
@@ -74,14 +74,14 @@ class ShoppingCardCommand extends Command
         $deliveryService = new DeliveryService($delivery);
 
         $deliveryCost = $deliveryService->deliveryCostCalculator(
-            $shoppingCart->getDeliveryCount(),
-            $shoppingCart->getItemCount()
+            $shoppingCard->getDeliveryCount(),
+            $shoppingCard->getItemCount()
         );
 
-        $output->writeln('Basket Amount: ' . $shoppingCart->getTotalPrice());
+        $output->writeln('Basket Amount: ' . $shoppingCard->getTotalPrice());
         $output->writeln('Delivery Amount: ' . $deliveryCost);
 
-        $totalPrice = $deliveryCost + $shoppingCart->getTotalPrice();
+        $totalPrice = $deliveryCost + $shoppingCard->getTotalPrice();
         $output->writeln('Total Amount: ' . $totalPrice);
 
         return Command::SUCCESS;
