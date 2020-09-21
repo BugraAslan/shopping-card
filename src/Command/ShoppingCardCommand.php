@@ -44,10 +44,11 @@ class ShoppingCardCommand extends Command
             ->setPrice(99.99)
             ->setCategory($bagCategory);
 
-        $shoppingCard = (new ShoppingCard())
-            ->addItem(new ShoppingItem($shirtProduct, 1))
-            ->addItem(new ShoppingItem($shirtProduct2, 3))
-            ->addItem(new ShoppingItem($bagProduct, 2));
+        $shoppingCard = (new ShoppingCard())->setItems([
+            new ShoppingItem($shirtProduct, 1),
+            new ShoppingItem($shirtProduct2, 3),
+            new ShoppingItem($bagProduct, 2)
+        ]);
 
         $bagCampaign = (new Campaign())
             ->setCategory($bagCategory)
