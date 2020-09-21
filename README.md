@@ -5,5 +5,5 @@ Php 7.4 <br>
 Symfony 5.1
 
 <h4>Terminal</h4>
-
+composer install
 php bin/console app:shopping-card
