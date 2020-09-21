@@ -29,25 +29,25 @@ class ShoppingCardCommand extends Command
         $bagCategory = (new Category())->setTitle('Bag');
         $shirtCategory = (new Category())->setTitle('Shirt');
 
-        $shirtProduct = (new Product())
+        $greyShirt = (new Product())
             ->setTitle('Gri Gömlek')
             ->setPrice(49.99)
             ->setCategory($shirtCategory);
 
-        $shirtProduct2 = (new Product())
+        $whiteShirt = (new Product())
             ->setTitle('Beyaz Gömlek')
             ->setPrice(59.99)
             ->setCategory($shirtCategory);
 
-        $bagProduct = (new Product())
+        $blackBag = (new Product())
             ->setTitle('Siyah Çanta')
             ->setPrice(99.99)
             ->setCategory($bagCategory);
 
         $shoppingCard = (new ShoppingCard())->setItems([
-            new ShoppingItem($shirtProduct, 1),
-            new ShoppingItem($shirtProduct2, 3),
-            new ShoppingItem($bagProduct, 2)
+            new ShoppingItem($greyShirt, 1),
+            new ShoppingItem($whiteShirt, 3),
+            new ShoppingItem($blackBag, 2)
         ]);
 
         $bagCampaign = (new Campaign())
