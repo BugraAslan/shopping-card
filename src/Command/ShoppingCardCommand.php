@@ -58,8 +58,7 @@ class ShoppingCardCommand extends Command
             ->setDiscountAmount(5);
 
         $shoppingService = new ShoppingService();
-        $shoppingService->applyCampaign($shoppingCard, $bagCampaign);
-        $shoppingService->applyCampaign($shoppingCard, $shirtCampaign);
+        $shoppingService->applyCampaigns($shoppingCard, [$bagCampaign, $shirtCampaign]);
 
         $coupon = (new Coupon())
             ->setMinimumAmount(75)

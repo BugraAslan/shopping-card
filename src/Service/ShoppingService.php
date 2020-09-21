@@ -10,13 +10,17 @@ class ShoppingService
 {
     /**
      * @param ShoppingCard $shoppingCard
-     * @param Campaign $campaign
+     * @param Campaign[] $campaigns
      */
-    public function applyCampaign(ShoppingCard $shoppingCard, Campaign $campaign): void
+    public function applyCampaigns(ShoppingCard $shoppingCard, array $campaigns): void
     {
         foreach ($shoppingCard->getItems() as $item) {
-            if ($item->getProduct()->getCategory()->getTitle() === $campaign->getCategory()->getTitle()) {
-                $item->setDiscount($campaign->getDiscountAmount());
+            foreach ($campaigns as $campaign){
+                if ($campaign instanceof Campaign){
+                    if ($item->getProduct()->getCategory()->getTitle() === $campaign->getCategory()->getTitle()) {
+                        $item->setDiscount($campaign->getDiscountAmount());
+                    }
+                }
             }
         }
     }
